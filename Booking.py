@@ -35,7 +35,13 @@ def book_trip(booker_id, trip_id, total_price):
 user = authenticate_user("example_user", "example_password")
 if user:
     print("User authenticated successfully!")
-    trips = search_trips("New York", "Los Angeles")
+    # Prompt the user to input origin and destination cities
+    origin_city = input("Enter the origin city: ")
+    destination_city = input("Enter the destination city: ")
+
+    # Call the search_trips function with user input
+    trips = search_trips(origin_city, destination_city)
+
     print("Available trips:")
     for trip in trips:
         print(trip)
