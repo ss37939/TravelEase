@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Trips</title>
+</head>
+<body>
+    <h1>Available Trips</h1>
+    <ul>
+        {% for trip in trips %}
+            <li>{{ trip }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/book_trip/{{ trips[0][0] }}" method="GET">
+        <input type="submit" value="Book Trip">
+    </form>
+</body>
+</html>

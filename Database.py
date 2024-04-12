@@ -70,7 +70,7 @@ sql_commands = [
       `Trip_ID` int,
       `Flight_ID` int,
       PRIMARY KEY (`Trip_ID`),
-      FOREIGN KEY (`Trip_ID`) REFERENCES `Trip`(`Trip_ID`),
+      --FOREIGN KEY (`Trip_ID`) REFERENCES `Trip`(`Trip_ID`),
       --FOREIGN KEY (`Flight_ID`) REFERENCES `Flight`(`Flight_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Hotel_Reservation` (
