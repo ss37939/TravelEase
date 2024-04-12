@@ -51,7 +51,7 @@ CREATE TABLE `Flight` (
   `Departure_City` varchar(20),
   `Arrival_City` varchar(20),
   `Departure_Time` datetime,
-  `Flight_Price` Type,
+  `Flight_Price` INT,
   `Flight_Availability` bit,
   PRIMARY KEY (`Flight_ID`)
 );
