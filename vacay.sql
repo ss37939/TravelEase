@@ -363,69 +363,141 @@ VALUES
 (5174, 3074, 6107, 'Suite', 290, 1),
 (5175, 3075, 6207, 'Deluxe', 260, 1),
 
---Cars
+-- Cars
 INSERT INTO Car (Car_ID, Make, Model, Car_Availability, Renting_Rate)
 VALUES
-(901, 'Toyota', 'Camry', 1, 50),
-(902, 'Honda', 'Accord', 1, 55),
-(903, 'Ford', 'Fusion', 1, 60),
-(904, 'Chevrolet', 'Malibu', 1, 65),
-(905, 'Nissan', 'Altima', 1, 70),
-(906, 'Hyundai', 'Sonata', 1, 75),
-(907, 'Kia', 'Optima', 1, 80),
-(908, 'Volkswagen', 'Passat', 1, 85),
-(909, 'BMW', '3 Series', 1, 90),
-(910, 'Mercedes-Benz', 'C-Class', 1, 95),
-(911, 'Audi', 'A4', 1, 100),
-(912, 'Lexus', 'ES', 1, 105),
-(913, 'Infiniti', 'Q50', 1, 110),
-(914, 'Cadillac', 'CTS', 1, 115),
-(915, 'Lincoln', 'MKZ', 1, 120),
-(916, 'Buick', 'Regal', 1, 125),
-(917, 'Volvo', 'S60', 1, 130),
-(918, 'Tesla', 'Model 3', 1, 135),
-(919, 'Mazda', '6', 1, 140),
-(920, 'Subaru', 'Legacy', 1, 145),
-(921, 'Acura', 'TLX', 1, 150),
-(922, 'Genesis', 'G70', 1, 155),
-(923, 'Jaguar', 'XE', 1, 160),
-(924, 'Land Rover', 'Discovery', 1, 165),
-(925, 'Jeep', 'Grand Cherokee', 1, 170),
-(926, 'Toyota', 'Corolla', 1, 175),
-(927, 'Honda', 'Civic', 1, 180),
-(928, 'Ford', 'Focus', 1, 185),
-(929, 'Chevrolet', 'Cruze', 1, 190),
-(930, 'Nissan', 'Sentra', 1, 195),
-(931, 'Hyundai', 'Elantra', 1, 200),
-(932, 'Kia', 'Forte', 1, 205),
-(933, 'Volkswagen', 'Jetta', 1, 210),
-(934, 'BMW', '2 Series', 1, 215),
-(935, 'Mercedes-Benz', 'A-Class', 1, 220),
-(936, 'Audi', 'A3', 1, 225),
-(937, 'Lexus', 'IS', 1, 230),
-(938, 'Infiniti', 'Q30', 1, 235),
-(939, 'Cadillac', 'ATS', 1, 240),
-(940, 'Lincoln', 'MKC', 1, 245),
-(941, 'Buick', 'Envision', 1, 250),
-(942, 'Volvo', 'XC40', 1, 255),
-(943, 'Tesla', 'Model Y', 1, 260),
-(944, 'Mazda', '3', 1, 265),
-(945, 'Subaru', 'Impreza', 1, 270),
-(946, 'Acura', 'ILX', 1, 275),
-(947, 'Genesis', 'G80', 1, 280),
-(948, 'Jaguar', 'XF', 1, 285),
-(949, 'Land Rover', 'Range Rover Evoque', 1, 290),
-(950, 'Jeep', 'Cherokee', 1, 295);
-(951, 'Toyota', 'Rav4', 1, 300),
-(952, 'Honda', 'CR-V', 1, 305),
-(953, 'Ford', 'Escape', 1, 310),
-(954, 'Chevrolet', 'Equinox', 1, 315),
-(955, 'Nissan', 'Rogue', 1, 320),
-(956, 'Hyundai', 'Tucson', 1, 325),
-(957, 'Kia', 'Sportage', 1, 330),
-(958, 'Volkswagen', 'Tiguan', 1, 335),
-(959, 'BMW', 'X3', 1, 340),
-(960, 'Mercedes-Benz', 'GLC', 1, 345),
-(961, 'Audi', 'Q5', 1, 350),
-(962, 'Lexus', 'NX', 1, 355),
-(963, 'Infiniti', 'QX50', 1, 360);
+(601, 'Toyota', 'Camry', 1, 50),
+(602, 'Honda', 'Accord', 1, 55),
+(603, 'Ford', 'Fusion', 1, 60),
+(604, 'Chevrolet', 'Malibu', 1, 65),
+(605, 'Nissan', 'Altima', 1, 70),
+(606, 'Hyundai', 'Sonata', 1, 75),
+(607, 'Kia', 'Optima', 1, 80),
+(608, 'Volkswagen', 'Passat', 1, 85),
+(609, 'BMW', '3 Series', 1, 90),
+(610, 'Mercedes-Benz', 'C-Class', 1, 95),
+(611, 'Audi', 'A4', 1, 100),
+(612, 'Lexus', 'ES', 1, 105),
+(613, 'Infiniti', 'Q50', 1, 110),
+(614, 'Cadillac', 'CTS', 1, 115),
+(615, 'Lincoln', 'MKZ', 1, 120),
+(616, 'Buick', 'Regal', 1, 125),
+(617, 'Volvo', 'S60', 1, 130),
+(618, 'Tesla', 'Model 3', 1, 135),
+(619, 'Mazda', '6', 1, 140),
+(620, 'Subaru', 'Legacy', 1, 145),
+(621, 'Acura', 'TLX', 1, 150),
+(622, 'Genesis', 'G70', 1, 155),
+(623, 'Jaguar', 'XE', 1, 160),
+(624, 'Land Rover', 'Discovery', 1, 165),
+(625, 'Jeep', 'Grand Cherokee', 1, 170),
+(626, 'Toyota', 'Corolla', 1, 175),
+(627, 'Honda', 'Civic', 1, 180),
+(628, 'Ford', 'Focus', 1, 185),
+(629, 'Chevrolet', 'Cruze', 1, 190),
+(630, 'Nissan', 'Sentra', 1, 195),
+(631, 'Hyundai', 'Elantra', 1, 200),
+(632, 'Kia', 'Forte', 1, 205),
+(633, 'Volkswagen', 'Jetta', 1, 210),
+(634, 'BMW', '2 Series', 1, 215),
+(635, 'Mercedes-Benz', 'A-Class', 1, 220),
+(636, 'Audi', 'A3', 1, 225),
+(637, 'Lexus', 'IS', 1, 230),
+(638, 'Infiniti', 'Q30', 1, 235),
+(639, 'Cadillac', 'ATS', 1, 240),
+(640, 'Lincoln', 'MKC', 1, 245),
+(641, 'Buick', 'Envision', 1, 250),
+(642, 'Volvo', 'XC40', 1, 255),
+(643, 'Tesla', 'Model Y', 1, 260),
+(644, 'Mazda', '3', 1, 265),
+(645, 'Subaru', 'Impreza', 1, 270),
+(646, 'Acura', 'ILX', 1, 275),
+(647, 'Genesis', 'G80', 1, 280),
+(648, 'Jaguar', 'XF', 1, 285),
+(649, 'Land Rover', 'Range Rover Evoque', 1, 290),
+(650, 'Jeep', 'Cherokee', 1, 295),
+(651, 'Toyota', 'Rav4', 1, 300),
+(652, 'Honda', 'CR-V', 1, 305),
+(653, 'Ford', 'Escape', 1, 310),
+(654, 'Chevrolet', 'Equinox', 1, 315),
+(655, 'Nissan', 'Rogue', 1, 320),
+(656, 'Hyundai', 'Tucson', 1, 325),
+(657, 'Kia', 'Sportage', 1, 330),
+(658, 'Volkswagen', 'Tiguan', 1, 335),
+(659, 'BMW', 'X3', 1, 340),
+(660, 'Mercedes-Benz', 'GLC', 1, 345),
+(661, 'Audi', 'Q5', 1, 350),
+(662, 'Lexus', 'NX', 1, 355),
+(663, 'Infiniti', 'QX50', 1, 360);
+
+-- Payment_Transactions
+INSERT INTO Payment_Transactions (Transaction_ID, Transaction_Amount, Payment_Status, Transaction_Timestamp, Payment_Method, Payor_ID)
+VALUES
+(1001, 450, 'Completed', '2024-04-18 11:00:00', 'Credit Card', 4),
+(1002, 600, 'Pending', '2024-04-19 16:30:00', 'PayPal', 5),
+(1003, 350, 'Completed', '2024-04-20 09:15:00', 'Debit Card', 6),
+(1004, 550, 'Pending', '2024-04-21 14:00:00', 'Credit Card', 8),
+(1005, 400, 'Completed', '2024-04-22 08:45:00', 'PayPal', 9),
+(1006, 700, 'Pending', '2024-04-23 12:20:00', 'Debit Card', 10),
+(1007, 250, 'Completed', '2024-04-24 10:10:00', 'Credit Card', 10),
+
+-- 1100
+-- Bookings
+INSERT INTO Bookings (Booking_ID, Booker_ID, Trip_ID, Rental_ID, Reservation_ID, Transaction_ID, Total_Price, Booking_Status)
+VALUES
+(1101, 4, NULL, 1401, NULL, 1001, 400, 'Confirmed'),
+(1102, 5, 1201, 1402, NULL, 1002, 500, 'Pending'),
+(1103, 6, NULL, NULL, 1301, 1003, 300, 'Confirmed'),
+(1104, 8, 1202, NULL, NULL, 1004, 250, 'Confirmed'),
+(1105, 9, NULL, NULL, 1302, 1005, 700, 'Pending'),
+(1106, 10, 1203, NULL, NULL, 1006, 350, 'Confirmed'),
+(1107, 10, 1204, 1403, 1303, 1007, 570, 'Confirmed'),
+
+-- 1200 Not Done
+-- Trips
+INSERT INTO Trips (Trip_ID, Type)
+VALUES
+(1201, 'One Way'),
+(1202, 'Round Trip'),
+(1203, 'One Way'),
+(1204, 'One Way');
+
+--NOt DOne
+-- Trip_Flights
+INSERT INTO Trip_Flights (Trip_ID, Flight_ID)
+VALUES
+(1201, 126),
+(1202, 127),
+(1202, 135),
+(1203, 128);
+
+-- 1300 NOt DOne
+-- Hotel_Reservations
+INSERT INTO Hotel_Reservations (Reservation_ID, Reservation_Price, Checkin_Date, Checkout_Date, Guest_ID)
+VALUES
+(1301, 801, 701, 3),
+(1302, 802, 702, 2),
+(1303, 803, 703, 4);
+
+-- 1500 Not DOne
+-- Room_Reservations
+INSERT INTO Room_Reservations (Reservation_ID, Room_ID, Num_Guests)
+VALUES
+(801, 901, 2),
+(802, 902, 1),
+(803, 903, 3);
+
+-- Rental_Cars
+INSERT INTO Rental_Cars (Rental_ID, Car_ID)
+VALUES
+(1401, 603),
+(1402, 627),
+(1403, 641);
+(1403, 613);
+
+-- Car_Rentals
+INSERT INTO Car_Rentals (Rental_ID, Pickup_Date, Return_Date, Renter_ID)
+VALUES
+(1401, 1301, '2024-04-20', '2024-04-23', 4),
+(1402, 1302, '2024-04-21', '2024-04-23', 5),
+(1403, 1303, '2024-04-22', '2024-04-26', 10);
