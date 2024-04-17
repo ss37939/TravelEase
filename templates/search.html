@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search</title>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
     <h1>Search</h1>
 
-    {% if request.args.get('try-again') %}
-        <form action="/search" method="GET">
-            <label for="origin-city">Enter origin city:</label>
-            <input type="text" id="origin-city" name="origin-city" required><br>
-            <label for="destination-city">Enter destination city:</label>
-            <input type="text" id="destination-city" name="destination-city" required><br>
-            <input type="submit" value="Search">
-        </form>
-    {% else %}
-        <form action="/search" method="GET">
-            <input type="hidden" name="try-again" value="true">
-            <input type="submit" value="Try Again">
-        </form>
-        <form action="/logout" method="POST">
-            <input type="submit" value="Back to Log In">
-        </form>
+    <form action="/search" method="POST">
+      <label for="origin-city">Enter origin city:</label>
+      <input
+        type="text"
+        id="origin-city"
+        name="origin-city"
+        value="{{ origin_city }}"
+        required
+      /><br />
+      <label for="destination-city">Enter destination city:</label>
+      <input
+        type="text"
+        id="destination-city"
+        name="destination-city"
+        value="{{ destination_city }}"
+        required
+      /><br />
+      <input type="submit" value="Search" />
+    </form>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %} {% if trips %}
+    <h2>Available trips:</h2>
+    <ul>
+      {% for trip in trips %}
+      <li>{{ trip }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
 
-    {% if trips %}
-        <h2>Available trips:</h2>
-        <ul>
-            {% for trip in trips %}
-                <li>{{ trip }}</li>
-            {% endfor %}
-        </ul>
-    {% elif request.args.get('origin-city') and request.args.get('destination-city') %}
-        <p>No trips available for the given origin and destination cities.</p>
-    {% endif %}
-</body>
+    <form action="/logout" method="POST">
+      <input type="submit" value="Log Out" />
+    </form>
+  </body>
 </html>
-

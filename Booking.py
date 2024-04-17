@@ -1,4 +1,6 @@
 import mysql.connector
+from datetime import datetime
+
 
 # Connect to MySQL
 mydb = mysql.connector.connect(
@@ -10,12 +12,19 @@ mydb = mysql.connector.connect(
 
 # Function for registering a new user
 def register_user(first_name, last_name, username, password, email, date_of_birth):
+     # Calculate age based on date of birth
+    dob = datetime.strptime(date_of_birth, '%Y-%m-%d')
+    age = (datetime.now() - dob).days // 365
+
+    if age < 18:
+        print("Sorry, you must be at least 18 years old to register.")
+        return
+
     cursor = mydb.cursor()
-    # Modify the INSERT statement to exclude the User_ID field
     cursor.execute("INSERT INTO User (First_Name, Last_Name, Username, Password, Email, Date_of_Birth) VALUES (%s, %s, %s, %s, %s, %s)", (first_name, last_name, username, password, email, date_of_birth))
     mydb.commit()
     cursor.close()
-
+    
 # Function for user authentication
 def authenticate_user(username, password):
     cursor = mydb.cursor()
@@ -98,10 +107,17 @@ def main():
             email = input("Enter your email: ")
             date_of_birth = input("Enter your date of birth (YYYY-MM-DD): ")
 
-            # Register the user
-            register_user(first_name, last_name, username, password, email, date_of_birth)
-            print("User registered successfully!")
-            
+            # Calculate age based on date of birth
+            dob = datetime.strptime(date_of_birth, '%Y-%m-%d')
+            age = (datetime.now() - dob).days // 365
+
+            if age < 18:
+                print("Sorry, you must be at least 18 years old to register.")
+            else:
+                # Register the user
+                register_user(first_name, last_name, username, password, email, date_of_birth)
+                print("User registered successfully!")
+        
         elif choice == "3":
             origin_city = input("Enter the origin city: ")
             destination_city = input("Enter the destination city: ")

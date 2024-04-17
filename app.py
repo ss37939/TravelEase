@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime
 import mysql.connector
+
 
 app = Flask(__name__)
 
@@ -47,6 +49,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -55,9 +58,8 @@ def login():
             # Redirect to a page where you can search for trips
             return redirect(url_for('search_page'))
         else:
-            return "Invalid username or password"
-    else:
-        return render_template('login.html')
+            error = "Invalid username or password"
+    return render_template('login.html', error=error)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -68,8 +70,15 @@ def register():
         password = request.form['password']
         email = request.form['email']
         date_of_birth = request.form['dob']
+        # Calculate age based on date of birth
+        dob = datetime.strptime(date_of_birth, '%Y-%m-%d')
+        age = (datetime.now() - dob).days // 365
+
+        if age < 18:
+            return render_template('register.html', error="Sorry, you must be at least 18 years old to register.")
+
         register_user(first_name, last_name, username, password, email, date_of_birth)
-        return "User registered successfully!"
+        return render_template('registration_success.html')
     else:
         return render_template('register.html')
 
@@ -79,13 +88,22 @@ def search_page():
 
 @app.route('/search', methods=['POST'])
 def search():
-    origin_city = request.form['origin-city']
-    destination_city = request.form['destination-city']
-    trips = search_trips(origin_city, destination_city)
-    if trips:
-        return render_template('trips.html', trips=trips)
+    if request.method == 'POST':
+        origin_city = request.form['origin-city']
+        destination_city = request.form['destination-city']
+
+        # Perform search for trips
+        trips = search_trips(origin_city, destination_city)
+
+        if trips:
+            # If trips are found, render the search results
+            return render_template('search.html', trips=trips)
+        else:
+            # If no trips are found, render the search form with an error message
+            return render_template('search.html', error="No trips available for the given origin and destination cities.", origin_city=origin_city, destination_city=destination_city)
     else:
-        return "No trips available for the given origin and destination cities."
+        # Render the search form without any error messages
+        return render_template('search.html', error=None)
 
 @app.route('/book_trip/<int:trip_id>')
 def book(trip_id):
@@ -95,6 +113,12 @@ def book(trip_id):
     total_price = 200
     book_trip(booker_id, trip_id, total_price)
     return "Trip booked successfully!"
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    # Perform logout actions here, such as clearing session data or redirecting to the login page
+    return redirect(url_for('login'))
+
 
 
 

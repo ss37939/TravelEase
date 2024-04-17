@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
     <h1>Register</h1>
+
+    {% if error %}
+    <div class="error-message">{{ error }}</div>
+    {% endif %}
+
     <form action="/register" method="POST">
       <label for="first-name">First Name</label>
       <input type="text" id="first-name" name="first-name" required /><br />
@@ -22,5 +32,8 @@
       <input type="date" id="dob" name="dob" required /><br />
       <input type="submit" value="Register" />
     </form>
+    <a href="/">
+      <button>Back to Home</button>
+    </a>
   </body>
 </html>
