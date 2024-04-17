@@ -1,127 +1,117 @@
-CREATE TABLE `User` (
-  `User_ID` int,
-  `First_Name` varchar(30),
-  `Last_Name` varchar(30),
-  `Username` varchar(20),
-  `Password` varchar(20),
-  `Email` varchar(50),
-  `Date_of_Birth` date,
-  PRIMARY KEY (`User_ID`)
+CREATE TABLE `Users` (
+  `User_ID` INT PRIMARY KEY,
+  `First_Name` VARCHAR(30) NOT NULL,
+  `Last_Name` VARCHAR(30) NOT NULL,
+  `Username` VARCHAR(20) UNIQUE NOT NULL,
+  `Password` VARCHAR(20) NOT NULL,
+  `Email` VARCHAR(50) UNIQUE NOT NULL,
+  `Date_of_Birth` DATE
 );
 
-CREATE TABLE `Payment_Transaction` (
-  `Transaction_ID` int,
-  `Transaction_Amount` int,
-  `Payment_Status` varchar(20),
-  `Transaction_Timestamp` datetime,
-  `Payment_Method` varchar(30),
-  `Payor_ID` int,
-  PRIMARY KEY (`Transaction_ID`),
-  FOREIGN KEY (`Payor_ID`) REFERENCES `User`(`User_ID`)
+CREATE TABLE `Payment_Transactions` (
+  `Transaction_ID` INT PRIMARY KEY,
+  `Transaction_Amount` INT,
+  `Payment_Status` VARCHAR(20),
+  `Transaction_Timestamp` DATETIME,
+  `Payment_Method` VARCHAR(30),
+  `Payor_ID` INT,
+  FOREIGN KEY (`Payor_ID`) REFERENCES `Users`(`User_ID`)
 );
 
-CREATE TABLE `Booking` (
-  `Booking_ID` int,
-  `Booker_ID` int,
-  `Trip_ID` int,
-  `Rental_ID` int,
-  `Reservation_ID` int,
-  `Transaction_ID` int,
-  `Total_Price` int,
-  `Booking_Status` varchar(20),
-  PRIMARY KEY (`Booking_ID`),
-  FOREIGN KEY (`Booker_ID`) REFERENCES `User`(`User_ID`)
+CREATE TABLE `Bookings` (
+  `Booking_ID` INT PRIMARY KEY,
+  `Booker_ID` INT,
+  `Trip_ID` INT,
+  `Rental_ID` INT,
+  `Reservation_ID` INT,
+  `Transaction_ID` INT,
+  `Total_Price` INT,
+  `Booking_Status` VARCHAR(20),
+  FOREIGN KEY (`Booker_ID`) REFERENCES `Users`(`User_ID`)
 );
 
-CREATE TABLE `Trip` (
-  `Trip_ID` int,
-  `Trip_Type` varchar(20),
-  `Trip_Price` int,
-  `Origin_City` varchar(20),
-  `Destination_City` varchar(20),
-  `Passenger_ID` int,
-  PRIMARY KEY (`Trip_ID`),
-  FOREIGN KEY (`Passenger_ID`) REFERENCES `User`(`User_ID`)
+CREATE TABLE `Trips` (
+  `Trip_ID` INT PRIMARY KEY,
+  `Trip_Type` VARCHAR(20),
+  `Trip_Price` INT,
+  `Origin_City` VARCHAR(20),
+  `Destination_City` VARCHAR(20),
+  `Passenger_ID` INT,
+  FOREIGN KEY (`Passenger_ID`) REFERENCES `Users`(`User_ID`)
 );
 
-CREATE TABLE `Flight` (
-  `Flight_ID` int,
-  `Flight_Name` varchar(10),
-  `Flight_Airline` varchar(20),
-  `Departure_City` varchar(20),
-  `Arrival_City` varchar(20),
-  `Departure_Time` datetime,
+CREATE TABLE `Flights` (
+  `Flight_ID` INT PRIMARY KEY,
+  `Flight_Name` VARCHAR(10),
+  `Flight_Airline` VARCHAR(20),
+  `Departure_City` VARCHAR(20),
+  `Arrival_City` VARCHAR(20),
+  `Departure_Time` DATETIME,
   `Flight_Price` INT,
-  `Flight_Availability` bit,
-  PRIMARY KEY (`Flight_ID`)
+  `Flight_Availability` BIT
 );
 
 CREATE TABLE `Trip_Flights` (
-  `Trip_ID` int,
-  `Flight_ID` int,
-  PRIMARY KEY (`Trip_ID`),
-  FOREIGN KEY (`Trip_ID`) REFERENCES `Trip`(`Trip_ID`),
-  FOREIGN KEY (`Flight_ID`) REFERENCES `Flight`(`Flight_ID`)
+  `Trip_ID` INT,
+  `Flight_ID` INT,
+  PRIMARY KEY (`Trip_ID`, `Flight_ID`),
+  FOREIGN KEY (`Trip_ID`) REFERENCES `Trips`(`Trip_ID`),
+  FOREIGN KEY (`Flight_ID`) REFERENCES `Flights`(`Flight_ID`)
 );
 
-CREATE TABLE `Hotel_Reservation` (
-  `Reservation_ID` int,
-  `Reservation_Price` int,
-  `CheckIn_Date` date,
-  `CheckOut_Date` date,
-  `GuestID` int,
-  PRIMARY KEY (`Reservation_ID`),
-  FOREIGN KEY (`GuestID`) REFERENCES `User`(`User_ID`)
+CREATE TABLE `Hotel_Reservations` (
+  `Reservation_ID` INT PRIMARY KEY,
+  `Reservation_Price` INT,
+  `CheckIn_Date` DATE,
+  `CheckOut_Date` DATE,
+  `Guest_ID` INT,
+  FOREIGN KEY (`Guest_ID`) REFERENCES `Users`(`User_ID`)
 );
 
-CREATE TABLE `Reservation_Rooms` (
-  `Reservation_ID` int,
-  `Room_ID` int,
-  PRIMARY KEY (`Reservation_ID`),
-  FOREIGN KEY (`Reservation_ID`) REFERENCES `Hotel_Reservation`(`Reservation_ID`)
+CREATE TABLE `Room_Reservations` (
+  `Reservation_ID` INT,
+  `Room_ID` INT,
+  PRIMARY KEY (`Reservation_ID`, `Room_ID`),
+  FOREIGN KEY (`Reservation_ID`) REFERENCES `Hotel_Reservations`(`Reservation_ID`),
+  FOREIGN KEY (`Room_ID`) REFERENCES `Rooms`(`Room_ID`)
 );
 
-CREATE TABLE `Hotel` (
-  `Hotel_ID` int,
-  `Hotel_Name` varchar(20),
-  `Hotel_City` varchar(20),
-  PRIMARY KEY (`Hotel_ID`)
+CREATE TABLE `Hotels` (
+  `Hotel_ID` INT PRIMARY KEY,
+  `Hotel_Name` VARCHAR(20),
+  `Hotel_City` VARCHAR(20)
 );
 
-CREATE TABLE `Room` (
-  `Room_ID` int,
-  `Hotel_ID` int,
-  `Room_Number` int,
-  `Room_Type` varchar(20),
-  `Room_Price` int,
-  `Room_Availability` bit,
-  PRIMARY KEY (`Room_ID`),
-  FOREIGN KEY (`Hotel_ID`) REFERENCES `Hotel`(`Hotel_ID`),
-  FOREIGN KEY (`Room_ID`) REFERENCES `Reservation_Rooms`(`Room_ID`)
+CREATE TABLE `Rooms` (
+  `Room_ID` INT PRIMARY KEY,
+  `Hotel_ID` INT,
+  `Room_Number` INT,
+  `Room_Type` VARCHAR(20),
+  `Room_Price` INT,
+  `Room_Availability` BIT,
+  FOREIGN KEY (`Hotel_ID`) REFERENCES `Hotels`(`Hotel_ID`)
 );
 
-CREATE TABLE `Car` (
-  `Car_ID` int,
-  `Make` varchar(20),
-  `Model` varchar(20),
-  `Car_Availability` bit,
-  `Renting_Rate` int,
-  PRIMARY KEY (`Car_ID`)
+CREATE TABLE `Cars` (
+  `Car_ID` INT PRIMARY KEY,
+  `Make` VARCHAR(20),
+  `Model` VARCHAR(20),
+  `Car_Availability` BIT,
+  `Renting_Rate` INT
 );
 
-CREATE TABLE `Car_Rental` (
-  `Rental_ID` int,
-  `Pickup_Date` date,
-  `Return_Date` date,
-  `Renter_ID` int,
-  PRIMARY KEY (`Rental_ID`),
-  FOREIGN KEY (`Renter_ID`) REFERENCES `User`(`User_ID`)
+CREATE TABLE `Car_Rentals` (
+  `Rental_ID` INT PRIMARY KEY,
+  `Pickup_Date` DATE,
+  `Return_Date` DATE,
+  `Renter_ID` INT,
+  FOREIGN KEY (`Renter_ID`) REFERENCES `Users`(`User_ID`)
 );
 
 CREATE TABLE `Rental_Cars` (
-  `Rental_ID` int,
-  `Car_ID` varchar(20),
-  PRIMARY KEY (`Rental_ID`),
-  FOREIGN KEY (`Rental_ID`) REFERENCES `Car_Rental`(`Rental_ID`),
-  FOREIGN KEY (`Car_ID`) REFERENCES `Car`(`Car_ID`)
-);
+  `Rental_ID` INT,
+  `Car_ID` INT,
+  PRIMARY KEY (`Rental_ID`, `Car_ID`),
+  FOREIGN KEY (`Rental_ID`) REFERENCES `Car_Rentals`(`Rental_ID`),
+  FOREIGN KEY (`Car_ID`) REFERENCES `Cars`(`Car_ID`)
+)
