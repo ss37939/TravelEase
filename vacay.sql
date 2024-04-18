@@ -25,6 +25,7 @@ VALUES
 (22, 'Evelyn', 'Gonzalez', 'evelyng', 'evelyn123', 'evelyn.gonzalez@yahoo.com', '1994-12-31'),
 (23, 'Lucas', 'Perez', 'lucasp', 'lucas456', 'lucas.perez@gmail.com', '1987-07-04');
 
+-- 100
 -- Flights
 INSERT INTO Flights (Flight_ID, Flight_Name, Flight_Airline, Departure_City, Arrival_City, Departure_Time, Flight_Price, Flight_Availability)
 VALUES
@@ -97,6 +98,7 @@ VALUES
 (167, 'BA789', 'British Airways', 'Paris', 'New York', '2025-03-25 09:30:00', 600, 1),
 (168, 'AA123', 'American Airlines', 'New York', 'Los Angeles', '2025-03-30 12:40:00', 500, 1);
 
+-- 3000
 -- Hotels
 INSERT INTO Hotels (Hotel_ID, Hotel_Name, Hotel_City)
 VALUES
@@ -184,6 +186,7 @@ VALUES
 (3082, 'Fairmont Pacific Rim', 'Vancouver'),
 (3083, 'The Ritz-Carlton', 'London');
 
+-- 5000
 -- Rooms
 INSERT INTO Rooms (Room_ID, Hotel_ID, Room_Number, Room_Type, Room_Price, Room_Availability)
 VALUES
@@ -363,6 +366,7 @@ VALUES
 (5174, 3074, 6107, 'Suite', 290, 1),
 (5175, 3075, 6207, 'Deluxe', 260, 1),
 
+-- 600
 -- Cars
 INSERT INTO Car (Car_ID, Make, Model, Car_Availability, Renting_Rate)
 VALUES
@@ -430,6 +434,7 @@ VALUES
 (662, 'Lexus', 'NX', 1, 355),
 (663, 'Infiniti', 'QX50', 1, 360);
 
+-- 1000
 -- Payment_Transactions
 INSERT INTO Payment_Transactions (Transaction_ID, Transaction_Amount, Payment_Status, Transaction_Timestamp, Payment_Method, Payor_ID)
 VALUES
@@ -453,7 +458,7 @@ VALUES
 (1106, 10, 1203, NULL, NULL, 1006, 350, 'Confirmed'),
 (1107, 10, 1204, 1403, 1303, 1007, 570, 'Confirmed'),
 
--- 1200 Not Done
+-- 1200
 -- Trips
 INSERT INTO Trips (Trip_ID, Type)
 VALUES
@@ -462,30 +467,31 @@ VALUES
 (1203, 'One Way'),
 (1204, 'One Way');
 
---NOt DOne
 -- Trip_Flights
 INSERT INTO Trip_Flights (Trip_ID, Flight_ID)
 VALUES
 (1201, 126),
 (1202, 127),
 (1202, 135),
-(1203, 128);
+(1203, 128),
+(1204, 166);
 
--- 1300 NOt DOne
+-- 1300
 -- Hotel_Reservations
 INSERT INTO Hotel_Reservations (Reservation_ID, Reservation_Price, Checkin_Date, Checkout_Date, Guest_ID)
 VALUES
-(1301, 801, 701, 3),
-(1302, 802, 702, 2),
-(1303, 803, 703, 4);
+(1301, 150, '2024-05-20', '2024-05-25', 6),
+(1302, 200, '2024-06-10', '2024-06-12', 9),
+(1303, 180, '2025-03-20', '2025-03-24', 10);
 
--- 1500 Not DOne
+-- 1500
 -- Room_Reservations
-INSERT INTO Room_Reservations (Reservation_ID, Room_ID, Num_Guests)
+INSERT INTO Room_Reservations (Reservation_ID, Room_ID)
 VALUES
-(801, 901, 2),
-(802, 902, 1),
-(803, 903, 3);
+(1301, 5013),
+(1301, 5136),
+(1302, 5026),
+(1303, 5091);
 
 -- Rental_Cars
 INSERT INTO Rental_Cars (Rental_ID, Car_ID)
@@ -495,9 +501,10 @@ VALUES
 (1403, 641);
 (1403, 613);
 
+-- 1400
 -- Car_Rentals
 INSERT INTO Car_Rentals (Rental_ID, Pickup_Date, Return_Date, Renter_ID)
 VALUES
-(1401, 1301, '2024-04-20', '2024-04-23', 4),
-(1402, 1302, '2024-04-21', '2024-04-23', 5),
-(1403, 1303, '2024-04-22', '2024-04-26', 10);
+(1401, '2024-04-20', '2024-04-23', 4),
+(1402, '2024-08-30', '2024-09-02', 5),
+(1403, '2025-03-20', '2025-03-24', 10);
