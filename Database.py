@@ -30,8 +30,8 @@ sql_commands = [
       `Transaction_Timestamp` datetime,
       `Payment_Method` varchar(30),
       `Payor_ID` int,
-      PRIMARY KEY (`Transaction_ID`),
-      --FOREIGN KEY (`Payor_ID`) REFERENCES `User`(`User_ID`)
+      PRIMARY KEY (`Transaction_ID`)
+      -- FOREIGN KEY (`Payor_ID`) REFERENCES `User`(`User_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Booking` (
       `Booking_ID` int,
@@ -42,8 +42,8 @@ sql_commands = [
       `Transaction_ID` int,
       `Total_Price` int,
       `Booking_Status` varchar(20),
-      PRIMARY KEY (`Booking_ID`),
-      --FOREIGN KEY (`Booker_ID`) REFERENCES `User`(`User_ID`)
+      PRIMARY KEY (`Booking_ID`)
+      -- FOREIGN KEY (`Booker_ID`) REFERENCES `User`(`User_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Trip` (
       `Trip_ID` int,
@@ -52,8 +52,8 @@ sql_commands = [
       `Origin_City` varchar(20),
       `Destination_City` varchar(20),
       `Passenger_ID` int,
-      PRIMARY KEY (`Trip_ID`),
-      --FOREIGN KEY (`Passenger_ID`) REFERENCES `User`(`User_ID`)
+      PRIMARY KEY (`Trip_ID`)
+      -- FOREIGN KEY (`Passenger_ID`) REFERENCES `User`(`User_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Flight` (
       `Flight_ID` int,
@@ -69,9 +69,9 @@ sql_commands = [
     """CREATE TABLE IF NOT EXISTS `Trip_Flights` (
       `Trip_ID` int,
       `Flight_ID` int,
-      PRIMARY KEY (`Trip_ID`),
-      --FOREIGN KEY (`Trip_ID`) REFERENCES `Trip`(`Trip_ID`),
-      --FOREIGN KEY (`Flight_ID`) REFERENCES `Flight`(`Flight_ID`)
+      PRIMARY KEY (`Trip_ID`)
+      -- FOREIGN KEY (`Trip_ID`) REFERENCES `Trip`(`Trip_ID`),
+      -- FOREIGN KEY (`Flight_ID`) REFERENCES `Flight`(`Flight_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Hotel_Reservation` (
       `Reservation_ID` int,
@@ -79,14 +79,14 @@ sql_commands = [
       `CheckIn_Date` date,
       `CheckOut_Date` date,
       `GuestID` int,
-      PRIMARY KEY (`Reservation_ID`),
-      --FOREIGN KEY (`GuestID`) REFERENCES `User`(`User_ID`)
+      PRIMARY KEY (`Reservation_ID`)
+      -- FOREIGN KEY (`GuestID`) REFERENCES `User`(`User_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Reservation_Rooms` (
       `Reservation_ID` int,
       `Room_ID` int,
-      PRIMARY KEY (`Reservation_ID`),
-      --FOREIGN KEY (`Reservation_ID`) REFERENCES `Hotel_Reservation`(`Reservation_ID`)
+      PRIMARY KEY (`Reservation_ID`)
+      -- FOREIGN KEY (`Reservation_ID`) REFERENCES `Hotel_Reservation`(`Reservation_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Hotel` (
       `Hotel_ID` int,
@@ -101,9 +101,9 @@ sql_commands = [
       `Room_Type` varchar(20),
       `Room_Price` int,
       `Room_Availability` bit,
-      PRIMARY KEY (`Room_ID`),
-      --FOREIGN KEY (`Hotel_ID`) REFERENCES `Hotel`(`Hotel_ID`),
-      --FOREIGN KEY (`Room_ID`) REFERENCES `Reservation_Rooms`(`Room_ID`)
+      PRIMARY KEY (`Room_ID`)
+      -- FOREIGN KEY (`Hotel_ID`) REFERENCES `Hotel`(`Hotel_ID`),
+      -- FOREIGN KEY (`Room_ID`) REFERENCES `Reservation_Rooms`(`Room_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Car` (
       `Car_ID` int,
@@ -118,15 +118,15 @@ sql_commands = [
       `Pickup_Date` date,
       `Return_Date` date,
       `Renter_ID` int,
-      PRIMARY KEY (`Rental_ID`),
-      --FOREIGN KEY (`Renter_ID`) REFERENCES `User`(`User_ID`)
+      PRIMARY KEY (`Rental_ID`)
+      -- FOREIGN KEY (`Renter_ID`) REFERENCES `User`(`User_ID`)
     );""",
     """CREATE TABLE IF NOT EXISTS `Rental_Cars` (
       `Rental_ID` int,
       `Car_ID` int,
-      PRIMARY KEY (`Rental_ID`),
-      --FOREIGN KEY (`Rental_ID`) REFERENCES `Car_Rental`(`Rental_ID`),
-      --FOREIGN KEY (`Car_ID`) REFERENCES `Car`(`Car_ID`)
+      PRIMARY KEY (`Rental_ID`)
+      -- FOREIGN KEY (`Rental_ID`) REFERENCES `Car_Rental`(`Rental_ID`),
+      -- FOREIGN KEY (`Car_ID`) REFERENCES `Car`(`Car_ID`)
     );"""
 ]
 
