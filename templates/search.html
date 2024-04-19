@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search</title>
+    <title>Flight Search</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -11,41 +11,38 @@
     />
   </head>
   <body>
-    <h1>Search</h1>
+    <h1>Search for Flights</h1>
 
-    <form action="/search" method="POST">
-      <label for="origin-city">Enter origin city:</label>
-      <input
-        type="text"
-        id="origin-city"
-        name="origin-city"
-        value="{{ origin_city }}"
-        required
-      /><br />
-      <label for="destination-city">Enter destination city:</label>
-      <input
-        type="text"
-        id="destination-city"
-        name="destination-city"
-        value="{{ destination_city }}"
-        required
-      /><br />
-      <input type="submit" value="Search" />
-    </form>
-
-    {% if error %}
-    <p>{{ error }}</p>
-    {% endif %} {% if trips %}
-    <h2>Available trips:</h2>
+    {% if flights %}
+    <h2>Available Flights</h2>
     <ul>
-      {% for trip in trips %}
-      <li>{{ trip }}</li>
+      {% for flight in flights %}
+      <li>
+        Flight ID: {{ flight[0] }}, Departure City: {{ flight[1] }}, Arrival
+        City: {{ flight[2] }},
+        <form action="/search_flights" method="post">
+          <!-- Change action to "/search_flights" and method to "post" -->
+          <input type="hidden" name="flight_id" value="{{ flight[0] }}" />
+          <input type="submit" value="Book" />
+        </form>
+      </li>
       {% endfor %}
     </ul>
-    {% endif %}
-
-    <form action="/logout" method="POST">
-      <input type="submit" value="Log Out" />
+    {% else %}
+    <form action="/search_flights" method="post">
+      <!-- Change action to "/search_flights" and method to "post" -->
+      <label for="departure-city">Departure City:</label>
+      <input
+        type="text"
+        id="departure-city"
+        name="departure_city"
+        required
+      /><br />
+      <label for="arrival-city">Arrival City:</label>
+      <input type="text" id="arrival-city" name="arrival_city" required /><br />
+      <input type="submit" value="Search Flights" />
     </form>
+    {% endif %}
+    <a href="/dashboard">Back to Dashboard</a>
   </body>
 </html>

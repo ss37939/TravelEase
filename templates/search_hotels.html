@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for Hotels</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Search for Hotels</h1>
+    <form action="/search_hotels" method="post">
+      <label for="hotel_city">City:</label>
+      <input
+        type="text"
+        id="hotel_city"
+        name="hotel_city"
+        placeholder="Enter city"
+      />
+      <input type="submit" value="Search" />
+    </form>
+    <a href="/dashboard">Back to Dashboard</a>
+  </body>
+</html>

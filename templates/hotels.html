@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Hotels</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Available Hotels</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Hotel ID</th>
+          <th>Hotel Name</th>
+          <th>City</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hotel in hotels %}
+        <tr>
+          <td>{{ hotel[0] }}</td>
+          <td>{{ hotel[1] }}</td>
+          <td>{{ hotel[2] }}</td>
+          <td>
+            <form action="/book_hotel/{{ hotel[0] }}" method="post">
+              <input type="submit" value="Book Hotel" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/dashboard">Back to Dashboard</a>
+  </body>
+</html>

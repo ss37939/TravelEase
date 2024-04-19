@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for Cars</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Search for Cars</h1>
+    <form action="/search_cars" method="post">
+      <label for="make">Make:</label>
+      <input type="text" id="make" name="make" />
+      <label for="model">Model:</label>
+      <input type="text" id="model" name="model" />
+      <input type="submit" value="Search" />
+    </form>
+    <a href="/dashboard">Back to Dashboard</a>
+  </body>
+</html>

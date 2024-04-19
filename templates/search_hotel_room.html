@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for Hotel Rooms</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Search for Hotel Rooms</h1>
+    <form action="/search_hotel_room" method="get">
+      <label for="room_type">Room Type:</label>
+      <input
+        type="text"
+        id="room_type"
+        name="room_type"
+        placeholder="Enter room type"
+      />
+      <input type="submit" value="Search" />
+    </form>
+    <a href="/dashboard">Back to Dashboard</a>
+  </body>
+</html>

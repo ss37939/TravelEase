@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Hotel Rooms</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Available Hotel Rooms</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Room ID</th>
+          <th>Hotel ID</th>
+          <th>Room Number</th>
+          <th>Room Type</th>
+          <th>Price</th>
+          <th>Book</th>
+          <!-- Added Action column -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for room in rooms %}
+        <tr>
+          <td>{{ room[0] }}</td>
+          <td>{{ room[1] }}</td>
+          <td>{{ room[2] }}</td>
+          <td>{{ room[3] }}</td>
+          <td>{{ room[4] }}</td>
+          <td>
+            <form action="/book_hotel_room/{{ room[0] }}" method="post">
+              <!-- Changed action to book_hotel_room -->
+              <input type="hidden" name="total_price" value="{{ room[4] }}" />
+              <!-- Added hidden input for total_price -->
+              <input type="submit" value="Book Room" />
+              <!-- Changed button label to Book Room -->
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/dashboard">Back to Dashboard</a>
+  </body>
+</html>

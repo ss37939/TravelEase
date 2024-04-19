@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Available Trips</title>
+    <title>Available Flights</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -11,14 +11,15 @@
     />
   </head>
   <body>
-    <h1>Available Trips</h1>
+    <h1>Available Flights</h1>
     <ul>
-      {% for trip in trips %}
-      <li>{{ trip }}</li>
+      {% for flight in flights %}
+      <li>{{ flight }}</li>
+      <form action="/book_flight/{{ flight[0] }}" method="post">
+        <button type="submit">Book Flight</button>
+      </form>
       {% endfor %}
     </ul>
-    <form action="/book_trip/{{ trips[0][0] }}" method="GET">
-      <input type="submit" value="Book Trip" />
-    </form>
+    <a href="/dashboard">Back to Dashboard</a>
   </body>
 </html>

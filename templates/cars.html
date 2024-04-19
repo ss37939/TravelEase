@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Cars</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Available Cars</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Car ID</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Renting Rate</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for car in cars %}
+        <tr>
+          <td>{{ car[0] }}</td>
+          <td>{{ car[1] }}</td>
+          <td>{{ car[2] }}</td>
+          <td>{{ car[3] }}</td>
+          <td>
+            <form action="/book_car/{{ car[0] }}" method="post">
+              <input type="submit" value="Book Car" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/dashboard">Back to Dashboard</a>
+  </body>
+</html>
