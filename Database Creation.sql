@@ -68,14 +68,6 @@ CREATE TABLE `Hotel_Reservations` (
   FOREIGN KEY (`Guest_ID`) REFERENCES `Users`(`User_ID`)
 );
 
-CREATE TABLE `Room_Reservations` (
-  `Reservation_ID` INT,
-  `Room_ID` INT,
-  PRIMARY KEY (`Reservation_ID`, `Room_ID`),
-  FOREIGN KEY (`Reservation_ID`) REFERENCES `Hotel_Reservations`(`Reservation_ID`),
-  FOREIGN KEY (`Room_ID`) REFERENCES `Rooms`(`Room_ID`)
-);
-
 CREATE TABLE `Hotels` (
   `Hotel_ID` INT PRIMARY KEY,
   `Hotel_Name` VARCHAR(20),
@@ -90,6 +82,14 @@ CREATE TABLE `Rooms` (
   `Room_Price` INT,
   `Room_Availability` BIT,
   FOREIGN KEY (`Hotel_ID`) REFERENCES `Hotels`(`Hotel_ID`)
+);
+
+CREATE TABLE `Room_Reservations` (
+  `Reservation_ID` INT,
+  `Room_ID` INT,
+  PRIMARY KEY (`Reservation_ID`, `Room_ID`),
+  FOREIGN KEY (`Reservation_ID`) REFERENCES `Hotel_Reservations`(`Reservation_ID`),
+  FOREIGN KEY (`Room_ID`) REFERENCES `Rooms`(`Room_ID`)
 );
 
 CREATE TABLE `Cars` (
@@ -114,4 +114,4 @@ CREATE TABLE `Rental_Cars` (
   PRIMARY KEY (`Rental_ID`, `Car_ID`),
   FOREIGN KEY (`Rental_ID`) REFERENCES `Car_Rentals`(`Rental_ID`),
   FOREIGN KEY (`Car_ID`) REFERENCES `Cars`(`Car_ID`)
-)
+);
