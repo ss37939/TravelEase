@@ -93,7 +93,7 @@ VALUES
 (162, 'BA678', 'British Airways', 'Paris', 'Sydney', '2025-03-01 08:10:00', 850, 1),
 (163, 'AA789', 'American Airlines', 'Sydney', 'Los Angeles', '2025-03-05 12:15:00', 700, 1),
 (164, 'DL234', 'Delta Airlines', 'Los Angeles', 'New York', '2025-03-10 09:30:00', 600, 1),
-(165, 'UA456', 'United Airlines', 'New York', 'London', '2025-03-15 08:00:00', 700, 1)
+(165, 'UA456', 'United Airlines', 'New York', 'London', '2025-03-15 08:00:00', 700, 1),
 (166, 'AF567', 'Air France', 'London', 'Paris', '2025-03-20 11:45:00', 200, 1),
 (167, 'BA789', 'British Airways', 'Paris', 'New York', '2025-03-25 09:30:00', 600, 1),
 (168, 'AA123', 'American Airlines', 'New York', 'Los Angeles', '2025-03-30 12:40:00', 500, 1);
@@ -332,7 +332,7 @@ VALUES
 (5140, 3017, 6705, 'Suite', 330, 1),
 (5141, 3018, 6805, 'Deluxe', 280, 1),
 (5142, 3019, 6905, 'Standard', 190, 1),
-(5143, 3020, 7005, 'Suite', 310, 1);
+(5143, 3020, 7005, 'Suite', 310, 1),
 (5144, 3044, 5106, 'Standard', 180, 1),
 (5145, 3045, 5206, 'Suite', 280, 1),
 (5146, 3046, 5306, 'Deluxe', 230, 1),
@@ -444,7 +444,7 @@ VALUES
 (1004, 1300, 'Pending', '2024-04-21 14:00:00', 'Credit Card', 8),
 (1005, 460, 'Completed', '2024-04-22 08:45:00', 'PayPal', 9),
 (1006, 500, 'Pending', '2024-04-23 12:20:00', 'Debit Card', 10),
-(1007, , 'Completed', '2024-04-24 10:10:00', 'Credit Card', 10),
+(1007, 1010, 'Completed', '2024-04-24 10:10:00', 'Credit Card', 10),
 
 -- 1100
 -- Bookings
@@ -498,7 +498,7 @@ INSERT INTO Rental_Cars (Rental_ID, Car_ID)
 VALUES
 (1401, 603),
 (1402, 627),
-(1403, 641);
+(1403, 641),
 (1403, 613);
 
 -- 1400
